@@ -7,9 +7,11 @@ import RiskManagement from './pages/risk-management';
 import PortfolioOverview from './pages/portfolio-overview';
 import MarketAnalysis from './pages/market-analysis';
 import TradingPerformance from './pages/trading-performance';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Dashboard from "./pages/Dashboard"; // Example dashboard page
 import { AuthProvider } from './contexts/AuthContext';
+import Home from "./pages/Home";
 
 const Routes = () => {
   return (
@@ -26,6 +28,8 @@ const Routes = () => {
           <Route path="/portfolio-overview" element={<PortfolioOverview />} />
           <Route path="/market-analysis" element={<MarketAnalysis />} />
           <Route path="/trading-performance" element={<TradingPerformance />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<NotFound />} />
         </RouterRoutes>
         </ErrorBoundary>

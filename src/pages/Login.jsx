@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { supabase } from '../lib/supabaseClient';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -69,6 +70,21 @@ const Login = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+
+    if (error) {
+      alert(error.error_description || error.message);
+    } else {
+      // On successful login, you might want to navigate to a dashboard page
+      alert('Logged in successfully!');
+      navigate('/dashboard'); // Example: navigate to a dashboard route
+    }
+    setLoading(false);
   };
 
   return (
@@ -180,13 +196,12 @@ const Login = () => {
           <div className="mt-6 text-center">
             <p className="text-sm text-muted-foreground">
               Don't have an account?{' '}
-              <button
-                type="button"
-                onClick={() => navigate('/signup')}
+              <Link
+                to="/signup"
                 className="text-primary hover:text-primary/80 font-medium"
               >
                 Sign up
-              </button>
+              </Link>
             </p>
           </div>
         </div>

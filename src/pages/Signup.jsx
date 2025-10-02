@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 
 const Signup = () => {
@@ -234,13 +234,9 @@ const Signup = () => {
           <div className="mt-6 text-center">
             <p className="text-sm text-muted-foreground">
               Already have an account?{' '}
-              <button
-                type="button"
-                onClick={() => navigate('/login')}
-                className="text-primary hover:text-primary/80 font-medium"
-              >
+              <Link to="/login" className="text-primary hover:text-primary/80 font-medium">
                 Sign in
-              </button>
+              </Link>
             </p>
           </div>
         </div>
